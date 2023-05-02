@@ -54,13 +54,16 @@ Workflow airflow
 ![plot](./docs/imgs/FLujo_General.drawio.png)
 
 Como se puede observar en la anterior figura, tenemos dos fuentes de información:
+
     - '`API webservice`'
     - '`Google sheets`'
+
 Las cuales contiene informaición sobre accidentalidad en la ciudad de seattle, el proceso esta  programado para que ejecute todos los dias a las 12:30 am, con el fin de realizar un procesamiento ETL batch, estos datasets son descargados en formato csv por una función request tipo get de un python operator de airflow. Esta data pura se aloja en un directorio temporal. 
 
 Una vez descargados estos archivos, se procede al paso de tranformación de los datos, debido al tamaña pequño de cada dataset se utilizo 'pandas', para el caso en que los datos fueran de un tamaño considerable ( > 1 GB) las transformaciónes se hubieran realizado de manera distribuida usando spark ya sea por 'databrick' o 'snowflake'. Finalizadas estas transformaciónes, se guardan en una zona de stage enformato csv para este caso, para archivos mas grandes se optaria por formatos mas especializados como parquet, delta, ocr, etc. Por utlmo mediante un hook de s3 se procede al cargue de los dataset refinados a un datalake para futuros analisis.
 
 Nota: la Ruta de almacenamiento en cada paso del dataset es:
+
     - `tmp/data/raw`: Ruta en donde se alojan los datos puros, tras haberse extraidos de las respectivas fuentes
     - `tmp/data/stage`: Contiene los archivos refinados despues de limpieza y transformacón
     - `bucket s3`: datalake 
