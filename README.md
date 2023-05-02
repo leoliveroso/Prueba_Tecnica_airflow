@@ -38,13 +38,17 @@ Este comando activará 7 contenedores Docker en su máquina, cada uno para un co
 - Worker: Ejecutor de Celery, para este caso.
 - Init: Iniciliazador 
 
-2. Verifique que los 4 contenedores Docker se crearon ejecutando 'docker ps'.
+3. Verifique que los 4 contenedores Docker se crearon ejecutando 'docker ps'.
 
 Note: Corriendo '`docker compose up --build`' usted comenzara su proyecto de Airflow Webserver expuesto en el puerto 8080 and Postgres expuesto en el puerto 5432. Si ya tiene alguno de esos puertos asignados, puede detener sus contenedores Docker existentes o cambiar el puerto.
 
-3. Para acceder la interfaz Airflow UI para su proyector local de Airflow. Para hacerlo, vaya a http://localhost:8080/ and log in con 'airflow' tanto para su nombre de usuario como para su contraseña.
+4. Para acceder la interfaz Airflow UI para su proyector local de Airflow. Para hacerlo, vaya a http://localhost:8080/ and log in con 'airflow' tanto para su nombre de usuario como para su contraseña.
 
 También debería poder acceder a su base de datos de Postgres en Postgres Database at 'localhost:5432/postgres'.
 
-NOTA: Una alternativa para desplegar facilmente un ambiente local de airflow, es usar '`astro cli`', el proceso para instalarlo se encuentra en el [GUIA DE INSTALACION ASTRO](https://docs.astronomer.io/astro/cli/install-cli)
+NOTA: Una alternativa para desplegar facilmente un ambiente local de airflow, es usar '`astro cli`', el proceso para instalarlo se encuentra en el [GUIA DE INSTALACION ASTRO](https://docs.astronomer.io/astro/cli/install-cli), ejecutado el comando `astro dev int` para inicializar el proyecto, posteriormente a ello copie la carpeta 'dag' al proyecto inicializado con astro, ademas de verificar los paquetes y dependencias. Una vez realizado esto, puede correr el proyecto ejecutando el comando `astro dev start`
 
+Workflow airflow 
+===========================
+
+![plot](./docs/imgs/FLujo_General.drawio.png)
