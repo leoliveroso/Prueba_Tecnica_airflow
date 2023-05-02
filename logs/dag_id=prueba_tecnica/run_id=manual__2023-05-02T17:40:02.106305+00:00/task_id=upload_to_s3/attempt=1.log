@@ -1,0 +1,80 @@
+[2023-05-02T17:44:23.747+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.upload_to_s3 manual__2023-05-02T17:40:02.106305+00:00 [queued]>
+[2023-05-02T17:44:23.760+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.upload_to_s3 manual__2023-05-02T17:40:02.106305+00:00 [queued]>
+[2023-05-02T17:44:23.761+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T17:44:23.761+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 3
+[2023-05-02T17:44:23.761+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T17:44:23.776+0000] {taskinstance.py:1304} INFO - Executing <Task(_PythonDecoratedOperator): upload_to_s3> on 2023-05-02 17:40:02.106305+00:00
+[2023-05-02T17:44:23.783+0000] {standard_task_runner.py:55} INFO - Started process 1505 to run task
+[2023-05-02T17:44:23.789+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'prueba_tecnica', 'upload_to_s3', 'manual__2023-05-02T17:40:02.106305+00:00', '--job-id', '99', '--raw', '--subdir', 'DAGS_FOLDER/data_process/prueba/Prueba_Tecnica.py', '--cfg-path', '/tmp/tmprfj_tpvh']
+[2023-05-02T17:44:23.790+0000] {standard_task_runner.py:83} INFO - Job 99: Subtask upload_to_s3
+[2023-05-02T17:44:23.865+0000] {task_command.py:389} INFO - Running <TaskInstance: prueba_tecnica.upload_to_s3 manual__2023-05-02T17:40:02.106305+00:00 [running]> on host bb7d79814ac7
+[2023-05-02T17:44:23.947+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=loliveros
+AIRFLOW_CTX_DAG_ID=prueba_tecnica
+AIRFLOW_CTX_TASK_ID=upload_to_s3
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-02T17:40:02.106305+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-02T17:40:02.106305+00:00
+[2023-05-02T17:44:23.950+0000] {Prueba_Tecnica.py:177} INFO - List files: ['/tmp/prueba_tecnica/data/stage/Traffic_Flow_Map_Volumes20230502.csv', '/tmp/prueba_tecnica/data/stage/collisions_20230502.csv']
+[2023-05-02T17:44:23.960+0000] {base_aws.py:120} INFO - No connection ID provided. Fallback on boto3 credential strategy (region_name=None). See: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html
+[2023-05-02T17:44:26.206+0000] {taskinstance.py:1772} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/decorators/base.py", line 217, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/data_process/prueba/Prueba_Tecnica.py", line 184, in upload_to_s3
+    hook_s3.load_file(
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 65, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 93, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 635, in load_file
+    client.upload_file(filename, bucket_name, key, ExtraArgs=extra_args, Config=self.transfer_config)
+  File "/home/airflow/.local/lib/python3.9/site-packages/boto3/s3/inject.py", line 143, in upload_file
+    return transfer.upload_file(
+  File "/home/airflow/.local/lib/python3.9/site-packages/boto3/s3/transfer.py", line 288, in upload_file
+    future.result()
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/futures.py", line 266, in result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/tasks.py", line 139, in __call__
+    return self._execute_main(kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/tasks.py", line 162, in _execute_main
+    return_value = self._main(**kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/upload.py", line 758, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/client.py", line 530, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/client.py", line 943, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/client.py", line 966, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/endpoint.py", line 198, in _send_request
+    request = self.create_request(request_dict, operation_model)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/endpoint.py", line 134, in create_request
+    self._event_emitter.emit(
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/signers.py", line 105, in handler
+    return self.sign(operation_name, request)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/signers.py", line 189, in sign
+    auth.add_auth(request)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/auth.py", line 418, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+[2023-05-02T17:44:26.217+0000] {taskinstance.py:1322} INFO - Marking task as UP_FOR_RETRY. dag_id=prueba_tecnica, task_id=upload_to_s3, execution_date=20230502T174002, start_date=20230502T174423, end_date=20230502T174426
+[2023-05-02T17:44:26.231+0000] {standard_task_runner.py:100} ERROR - Failed to execute job 99 for task upload_to_s3 (Unable to locate credentials; 1505)
+[2023-05-02T17:44:26.254+0000] {local_task_job.py:159} INFO - Task exited with return code 1
+[2023-05-02T17:44:26.268+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check

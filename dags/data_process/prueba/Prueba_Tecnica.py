@@ -11,9 +11,9 @@ SUMMARY.
 """
 from data_process.prueba.utils.general_utils import (download_csv_url, read_csv, clean_transform_data)
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+from datetime import datetime, timedelta
 from airflow.decorators import dag, task
 from airflow.configuration import conf
-from datetime import datetime
 import logging
 import shutil
 import json
@@ -35,9 +35,11 @@ PARAMS_DEFINITION = {
     'path_s3': 'archivos_varios/weather-collisions',
     's3_source_bucket': 'pruebas-loliveros',
     'website_download': 'https://opendata.arcgis.com/api/v3/datasets/34dd0a126aeb4dd5b99a397b5884e71f_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1',
-    'queries_base_path': os.path.join(os.path.dirname(__file__), 'queries'),
+    'sheet_id': '1nOEm6C883Oi5ZetmrXoI4ENseXb5NDYmu9hTk_jw8Pk',
     'default_args': {
         'owner': 'loliveros',
+        'retries': 3,
+        'retry_delay': timedelta(minutes=3),
     },
     'num_workers': int(int(conf.get("core", "parallelism"))*0.2),
 }
@@ -47,7 +49,6 @@ PARAMS_DEFINITION = {
     schedule_interval='30 0 * * *',
     start_date=datetime(2023, 5, 1),
     description='Challenge Ingeniero de Datos Semi-Senior-2',
-    template_searchpath=PARAMS_DEFINITION['queries_base_path'],
     default_args=PARAMS_DEFINITION['default_args'],
     tags=['Prueba', 'colombia'],
     catchup=False,
@@ -78,9 +79,11 @@ def prueba_tecnica():
 
     # Download files from url
     @task(trigger_rule='all_success')
-    def download_files_url(url_csv, folder_dir): 
+    def download_files_url(json_params:json, folder_dir:str): 
         """Download csv from url."""
-        filename_dest = 'collisions_' + str(datetime.today().strftime('%Y%m%d'))
+        log.info(f'json params: {json_params} and folder dir: {folder_dir}')
+        filename_dest = json_params['filename_dest']
+        url_csv = json_params['url_csv']
         download_csv_url(url_csv, folder_dir,
                          file_name=filename_dest,
                          format_file='csv')
@@ -94,10 +97,22 @@ def prueba_tecnica():
 
         log.info(f'num workers: {PARAMS_DEFINITION["num_workers"]}')
     
-    download_files_url_task = download_files_url(
-        PARAMS_DEFINITION['website_download'],
-        PARAMS_DEFINITION['folder_dir']['data_raw']
-    )
+    list_json_args = [
+        {
+            'url_csv': "https://docs.google.com/spreadsheets/export?id={}&exportFormat=csv".format(
+                PARAMS_DEFINITION['sheet_id']),
+            'filename_dest': 'Traffic_Flow_Map_Volumes' + str(datetime.today().strftime('%Y%m%d'))
+        },
+        {
+            'url_csv': PARAMS_DEFINITION['website_download'],
+            'filename_dest': 'collisions_' + str(datetime.today().strftime('%Y%m%d'))
+        }
+    ]
+    download_files_url_task = download_files_url.partial(
+        folder_dir=PARAMS_DEFINITION['folder_dir']['data_raw']
+        ).expand(
+            json_params=list_json_args
+        )
 
     @task(trigger_rule='all_success')
     def transform_data(list_file_path:list, file_path_dest:str, counter: int):
@@ -112,7 +127,24 @@ def prueba_tecnica():
             # clean and transform data
             filename_dest = file_path.split('/')[-1]
             dir_dest = os.path.join(file_path_dest, filename_dest)
-            clean_transform_data(df = data, subset_columns=['WEATHER'], path_dest = dir_dest)
+            # apply clean and transform data
+            if filename_dest.find('Traffic_Flow_Map_Volumes') != -1:
+                json_groupby = {
+                    'cols_groupby': ['STNAME', 'YEAR'],
+                    'col_agg': 'AAWDT', 
+                    'agg_func': 'sum'
+                }
+                subset_columns = ['AAWDT']
+            elif filename_dest.find('collisions') != -1:
+                json_groupby = {
+                    'cols_groupby': ['WEATHER'],
+                    'col_agg': 'WEATHER',
+                    'agg_func': 'count'
+                }
+                subset_columns = ['WEATHER']
+
+            clean_transform_data(df = data,subset_columns=subset_columns,
+                                 json_groupby=json_groupby,path_dest = dir_dest)
 
             files_csv_raw = glob.glob(
                 os.path.join(
