@@ -52,3 +52,5 @@ Workflow airflow
 ===========================
 
 ![plot](./docs/imgs/FLujo_General.drawio.png)
+
+![plot](./docs/imgs/dag.png)
