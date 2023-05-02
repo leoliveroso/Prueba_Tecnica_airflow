@@ -6,7 +6,6 @@ Esta es la solución del Challenge Ingeniero de Datos Semi-Senior-2
 Project Contents
 ================
 
-Your Astro project contains the following files and folders:
 Este proyecto contiene los siguientes archivos y carpetas:
 
 - dags: Esta carpeta contiene los archivos python de cada flujo de Airflow, Este directorio incluye dos subdirectorios:
@@ -22,29 +21,29 @@ Este proyecto contiene los siguientes archivos y carpetas:
 Deploy Your Project Locally
 ===========================
 
-1. Start Airflow on your local machine by running 'astro dev start'.
+1. Como prerequisito para este proyecto se necesita tener instalado:
+    - `Docker Desktop`
 
-This command will spin up 4 Docker containers on your machine, each for a different Airflow component:
+2. Una vez verificado este requerimiento y clonado el repositorio en local ejecutar:
+    - `docker compose up airflow-init` --> Con el fin crear el contenedor con todas sus dependencias 
+    - `docker compose up --build` --> Con el fin correr el contenedor con todas sus dependencias 
+
+Este comando activará 7 contenedores Docker en su máquina, cada uno para un componente Airflow diferente:
 
 - Postgres: Airflow's Metadata Database
 - Webserver: The Airflow component responsible for rendering the Airflow UI
 - Scheduler: The Airflow component responsible for monitoring and triggering tasks
 - Triggerer: The Airflow component responsible for triggering deferred tasks
+- Redis: Servicio de Encolamiento
+- Worker: Ejecutor de Celery, para este caso.
+- Init: Iniciliazador 
 
-2. Verify that all 4 Docker containers were created by running 'docker ps'.
+2. Verifique que los 4 contenedores Docker se crearon ejecutando 'docker ps'.
 
-Note: Running 'astro dev start' will start your project with the Airflow Webserver exposed at port 8080 and Postgres exposed at port 5432. If you already have either of those ports allocated, you can either stop your existing Docker containers or change the port.
+Note: Corriendo '`docker compose up --build`' usted comenzara su proyecto de Airflow Webserver expuesto en el puerto 8080 and Postgres expuesto en el puerto 5432. Si ya tiene alguno de esos puertos asignados, puede detener sus contenedores Docker existentes o cambiar el puerto.
 
-3. Access the Airflow UI for your local Airflow project. To do so, go to http://localhost:8080/ and log in with 'admin' for both your Username and Password.
+3. Para acceder la interfaz Airflow UI para su proyector local de Airflow. Para hacerlo, vaya a http://localhost:8080/ and log in con 'airflow' tanto para su nombre de usuario como para su contraseña.
 
-You should also be able to access your Postgres Database at 'localhost:5432/postgres'.
+También debería poder acceder a su base de datos de Postgres en Postgres Database at 'localhost:5432/postgres'.
 
-Deploy Your Project to Astronomer
-=================================
 
-If you have an Astronomer account, pushing code to a Deployment on Astronomer is simple. For deploying instructions, refer to Astronomer documentation: https://docs.astronomer.io/cloud/deploy-code/
-
-Contact
-=======
-
-The Astronomer CLI is maintained with love by the Astronomer team. To report a bug or suggest a change, reach out to our support.
