@@ -1,0 +1,90 @@
+[2023-05-02T17:22:10.126+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.download_files_url manual__2023-05-02T17:22:04.611579+00:00 map_index=0 [queued]>
+[2023-05-02T17:22:10.139+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.download_files_url manual__2023-05-02T17:22:04.611579+00:00 map_index=0 [queued]>
+[2023-05-02T17:22:10.139+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T17:22:10.139+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 1
+[2023-05-02T17:22:10.140+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T17:22:10.154+0000] {taskinstance.py:1304} INFO - Executing <Mapped(_PythonDecoratedOperator): download_files_url> on 2023-05-02 17:22:04.611579+00:00
+[2023-05-02T17:22:10.162+0000] {standard_task_runner.py:55} INFO - Started process 939 to run task
+[2023-05-02T17:22:10.168+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'prueba_tecnica', 'download_files_url', 'manual__2023-05-02T17:22:04.611579+00:00', '--job-id', '51', '--raw', '--subdir', 'DAGS_FOLDER/data_process/prueba/Prueba_Tecnica.py', '--cfg-path', '/tmp/tmpfovodvta', '--map-index', '0']
+[2023-05-02T17:22:10.169+0000] {standard_task_runner.py:83} INFO - Job 51: Subtask download_files_url
+[2023-05-02T17:22:10.237+0000] {task_command.py:389} INFO - Running <TaskInstance: prueba_tecnica.download_files_url manual__2023-05-02T17:22:04.611579+00:00 map_index=0 [running]> on host bb7d79814ac7
+[2023-05-02T17:22:10.315+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=loliveros
+AIRFLOW_CTX_DAG_ID=prueba_tecnica
+AIRFLOW_CTX_TASK_ID=download_files_url
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-02T17:22:04.611579+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-02T17:22:04.611579+00:00
+[2023-05-02T17:22:10.316+0000] {Prueba_Tecnica.py:84} INFO - json params: {'url_csv': 'https://docs.google.com/spreadsheets/export?id=1nOEm6C883Oi5ZetmrXoI4ENseXb5NDYmu9hTk_jw8Pk&exportFormat=csv', 'filename_dest': 'Traffic_Flow_Map_Volumes20230502'} and folder dir: /tmp/prueba_tecnica/data/raw
+[2023-05-02T17:22:21.153+0000] {taskinstance.py:1772} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/util/connection.py", line 72, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/local/lib/python3.9/socket.py", line 954, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 386, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 1042, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connection.py", line 358, in connect
+    self.sock = conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7fd431c3f700>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    retries = retries.increment(
+  File "/home/airflow/.local/lib/python3.9/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='doc-14-9s-sheets.googleusercontent.com', port=443): Max retries exceeded with url: /export/n4743ueaoiib6is67cgugk097k/c0bangrg77fe3raia05suf3umk/1683048130000/114661887288107585386/*/1nOEm6C883Oi5ZetmrXoI4ENseXb5NDYmu9hTk_jw8Pk?id=1nOEm6C883Oi5ZetmrXoI4ENseXb5NDYmu9hTk_jw8Pk&exportFormat=csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fd431c3f700>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/decorators/base.py", line 217, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/data_process/prueba/Prueba_Tecnica.py", line 87, in download_files_url
+    download_csv_url(url_csv, folder_dir,
+  File "/opt/airflow/dags/data_process/prueba/utils/general_utils.py", line 17, in download_csv_url
+    r = requests.get(url_csv, stream=True)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/sessions.py", line 723, in send
+    history = [resp for resp in gen]
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/sessions.py", line 723, in <listcomp>
+    history = [resp for resp in gen]
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/sessions.py", line 266, in resolve_redirects
+    resp = self.send(
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/requests/adapters.py", line 565, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='doc-14-9s-sheets.googleusercontent.com', port=443): Max retries exceeded with url: /export/n4743ueaoiib6is67cgugk097k/c0bangrg77fe3raia05suf3umk/1683048130000/114661887288107585386/*/1nOEm6C883Oi5ZetmrXoI4ENseXb5NDYmu9hTk_jw8Pk?id=1nOEm6C883Oi5ZetmrXoI4ENseXb5NDYmu9hTk_jw8Pk&exportFormat=csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fd431c3f700>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+[2023-05-02T17:22:21.165+0000] {taskinstance.py:1322} INFO - Marking task as FAILED. dag_id=prueba_tecnica, task_id=download_files_url, map_index=0, execution_date=20230502T172204, start_date=20230502T172210, end_date=20230502T172221
+[2023-05-02T17:22:21.176+0000] {standard_task_runner.py:100} ERROR - Failed to execute job 51 for task download_files_url (HTTPSConnectionPool(host='doc-14-9s-sheets.googleusercontent.com', port=443): Max retries exceeded with url: /export/n4743ueaoiib6is67cgugk097k/c0bangrg77fe3raia05suf3umk/1683048130000/114661887288107585386/*/1nOEm6C883Oi5ZetmrXoI4ENseXb5NDYmu9hTk_jw8Pk?id=1nOEm6C883Oi5ZetmrXoI4ENseXb5NDYmu9hTk_jw8Pk&exportFormat=csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fd431c3f700>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')); 939)
+[2023-05-02T17:22:21.210+0000] {local_task_job.py:159} INFO - Task exited with return code 1
+[2023-05-02T17:22:21.241+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check

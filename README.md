@@ -46,4 +46,5 @@ Note: Corriendo '`docker compose up --build`' usted comenzara su proyecto de Air
 
 También debería poder acceder a su base de datos de Postgres en Postgres Database at 'localhost:5432/postgres'.
 
+NOTA: Una alternativa para desplegar facilmente un ambiente local de airflow, es usar '`astro cli`', el proceso para instalarlo se encuentra en el [GUIA DE INSTALACION ASTRO](https://docs.astronomer.io/astro/cli/install-cli)
 

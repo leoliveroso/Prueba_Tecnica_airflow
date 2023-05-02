@@ -1,0 +1,25 @@
+[2023-05-02T16:46:10.982+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.download_files_url scheduled__2023-05-01T00:30:00+00:00 map_index=1 [queued]>
+[2023-05-02T16:46:11.008+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.download_files_url scheduled__2023-05-01T00:30:00+00:00 map_index=1 [queued]>
+[2023-05-02T16:46:11.011+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T16:46:11.011+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 1
+[2023-05-02T16:46:11.011+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T16:46:11.034+0000] {taskinstance.py:1304} INFO - Executing <Mapped(_PythonDecoratedOperator): download_files_url> on 2023-05-01 00:30:00+00:00
+[2023-05-02T16:46:11.044+0000] {standard_task_runner.py:55} INFO - Started process 140 to run task
+[2023-05-02T16:46:11.051+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'prueba_tecnica', 'download_files_url', 'scheduled__2023-05-01T00:30:00+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/data_process/prueba/Prueba_Tecnica.py', '--cfg-path', '/tmp/tmpqrl021sg', '--map-index', '1']
+[2023-05-02T16:46:11.053+0000] {standard_task_runner.py:83} INFO - Job 8: Subtask download_files_url
+[2023-05-02T16:46:11.163+0000] {task_command.py:389} INFO - Running <TaskInstance: prueba_tecnica.download_files_url scheduled__2023-05-01T00:30:00+00:00 map_index=1 [running]> on host bb7d79814ac7
+[2023-05-02T16:46:11.432+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=loliveros
+AIRFLOW_CTX_DAG_ID=prueba_tecnica
+AIRFLOW_CTX_TASK_ID=download_files_url
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-01T00:30:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-05-01T00:30:00+00:00
+[2023-05-02T16:46:12.617+0000] {Prueba_Tecnica.py:94} INFO - Files downloaded: ['/tmp/prueba_tecnica/data/raw/collisions_20230502.csv', '/tmp/prueba_tecnica/data/raw/Traffic_Flow_Map_Volumes.csv']
+[2023-05-02T16:46:12.618+0000] {Prueba_Tecnica.py:96} INFO - num workers: 6
+[2023-05-02T16:46:12.619+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-05-02T16:46:12.629+0000] {taskinstance.py:1322} INFO - Marking task as SUCCESS. dag_id=prueba_tecnica, task_id=download_files_url, map_index=1, execution_date=20230501T003000, start_date=20230502T164610, end_date=20230502T164612
+[2023-05-02T16:46:12.668+0000] {local_task_job.py:159} INFO - Task exited with return code 0
+[2023-05-02T16:46:12.701+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check
