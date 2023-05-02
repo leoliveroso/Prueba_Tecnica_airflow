@@ -1,0 +1,24 @@
+[2023-05-02T17:25:18.472+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.transform_data manual__2023-05-02T17:24:07.621819+00:00 map_index=3 [queued]>
+[2023-05-02T17:25:18.503+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.transform_data manual__2023-05-02T17:24:07.621819+00:00 map_index=3 [queued]>
+[2023-05-02T17:25:18.504+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T17:25:18.505+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 1
+[2023-05-02T17:25:18.505+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T17:25:18.538+0000] {taskinstance.py:1304} INFO - Executing <Mapped(_PythonDecoratedOperator): transform_data> on 2023-05-02 17:24:07.621819+00:00
+[2023-05-02T17:25:18.551+0000] {standard_task_runner.py:55} INFO - Started process 1039 to run task
+[2023-05-02T17:25:18.566+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'prueba_tecnica', 'transform_data', 'manual__2023-05-02T17:24:07.621819+00:00', '--job-id', '65', '--raw', '--subdir', 'DAGS_FOLDER/data_process/prueba/Prueba_Tecnica.py', '--cfg-path', '/tmp/tmpy7vm5a2c', '--map-index', '3']
+[2023-05-02T17:25:18.567+0000] {standard_task_runner.py:83} INFO - Job 65: Subtask transform_data
+[2023-05-02T17:25:18.690+0000] {task_command.py:389} INFO - Running <TaskInstance: prueba_tecnica.transform_data manual__2023-05-02T17:24:07.621819+00:00 map_index=3 [running]> on host bb7d79814ac7
+[2023-05-02T17:25:18.792+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=loliveros
+AIRFLOW_CTX_DAG_ID=prueba_tecnica
+AIRFLOW_CTX_TASK_ID=transform_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-02T17:24:07.621819+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-02T17:24:07.621819+00:00
+[2023-05-02T17:25:18.796+0000] {Prueba_Tecnica.py:120} INFO - Counter: 3 and dim list file path: 2
+[2023-05-02T17:25:18.813+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-05-02T17:25:18.843+0000] {taskinstance.py:1322} INFO - Marking task as SUCCESS. dag_id=prueba_tecnica, task_id=transform_data, map_index=3, execution_date=20230502T172407, start_date=20230502T172518, end_date=20230502T172518
+[2023-05-02T17:25:18.897+0000] {local_task_job.py:159} INFO - Task exited with return code 0
+[2023-05-02T17:25:18.917+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check

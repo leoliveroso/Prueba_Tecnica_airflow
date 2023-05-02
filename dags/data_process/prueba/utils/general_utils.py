@@ -1,5 +1,6 @@
 import pandas as pd
 import requests
+import json
 import os
 
 
@@ -30,16 +31,22 @@ def clean_data(df:pd.DataFrame, subset_columns:list) -> pd.DataFrame:
     df = df.dropna(axis=0, subset=subset_columns)
     return df
 
-def clean_transform_data(df:pd.DataFrame, subset_columns:list, path_dest:str) -> pd.DataFrame:
+def clean_transform_data(df:pd.DataFrame, subset_columns:list, json_groupby:json, path_dest:str) -> pd.DataFrame:
     """Transform data."""
     # Clean data
     df = clean_data(df, subset_columns)
     # Groupby
-    df = df.groupby(['WEATHER']).agg(
+    df = df.groupby(json_groupby['cols_groupby']).agg(
         collision_count = pd.NamedAgg(
-            column='WEATHER', 
-            aggfunc='count'
-            )
-        ).reset_index()
+            column=json_groupby['col_agg'],
+            aggfunc=json_groupby['agg_func']
+        )
+    ).reset_index()
+    # df = df.groupby(['WEATHER']).agg(
+    #     collision_count = pd.NamedAgg(
+    #         column='WEATHER', 
+    #         aggfunc='count'
+    #         )
+    #     ).reset_index()
     # Save data
     df.to_csv(path_dest, index=False)
