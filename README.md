@@ -1,22 +1,23 @@
 Overview
 ========
 
-Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
+Esta es la solución del Challenge Ingeniero de Datos Semi-Senior-2
 
 Project Contents
 ================
 
 Your Astro project contains the following files and folders:
+Este proyecto contiene los siguientes archivos y carpetas:
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes two example DAGs:
-    - `example_dag_basic`: This DAG shows a simple ETL data pipeline example with three TaskFlow API tasks that run daily.
-    - `example_dag_advanced`: This advanced DAG showcases a variety of Airflow features like branching, Jinja templates, task groups and several Airflow operators.
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. It is empty by default.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
+- dags: Esta carpeta contiene los archivos python de cada flujo de Airflow, Este directorio incluye dos subdirectorios:
+    - `data_process` : que contiene el flujo de trabajo relacionado a la prueba, así como sus componentes. 
+    - `example_dags`: Son ejemplo basicos de flujo de trabajo que vienen por defecto en airflo.
+- Dockerfile: Este archivo contiene la imagen docker de airflow 2.5.0, ademas de proporcionar la instalación de paquetes y dependecias especificas para el desarrollo de  esta prueba.
+- include: Esta carpeta contiene cualquier archivo adiciona que se requiera incluir como parte del proyecto, Esta vacio por defecto.
+- packages.txt: Instala paquetes en el sistema operativo necesarios para este proyecto.
+- requirements.txt: Instala las dependecias de python necesarias para este proyecto.
+- plugins: Añade plugins personalizado o de comunidad, para este ocasión no es necesario, por ende viene vacio.
+- docker-compose.yaml: Se usa este archivo para especificar las conexiones, Variables, Base de datos, ejecutor, trabajador, etc. Con el fin de construir satisfactoriamente un contenedor localmente.
 
 Deploy Your Project Locally
 ===========================
