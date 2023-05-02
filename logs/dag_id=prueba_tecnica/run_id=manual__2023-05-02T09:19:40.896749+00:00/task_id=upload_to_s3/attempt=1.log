@@ -1,0 +1,84 @@
+[2023-05-02T09:20:13.630+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.upload_to_s3 manual__2023-05-02T09:19:40.896749+00:00 [queued]>
+[2023-05-02T09:20:13.640+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.upload_to_s3 manual__2023-05-02T09:19:40.896749+00:00 [queued]>
+[2023-05-02T09:20:13.641+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T09:20:13.641+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 1
+[2023-05-02T09:20:13.642+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T09:20:13.657+0000] {taskinstance.py:1304} INFO - Executing <Task(_PythonDecoratedOperator): upload_to_s3> on 2023-05-02 09:19:40.896749+00:00
+[2023-05-02T09:20:13.664+0000] {standard_task_runner.py:55} INFO - Started process 1462 to run task
+[2023-05-02T09:20:13.669+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'prueba_tecnica', 'upload_to_s3', 'manual__2023-05-02T09:19:40.896749+00:00', '--job-id', '99', '--raw', '--subdir', 'DAGS_FOLDER/data_process/prueba/Prueba_Tecnica.py', '--cfg-path', '/tmp/tmplxpyynmc']
+[2023-05-02T09:20:13.669+0000] {standard_task_runner.py:83} INFO - Job 99: Subtask upload_to_s3
+[2023-05-02T09:20:13.740+0000] {task_command.py:389} INFO - Running <TaskInstance: prueba_tecnica.upload_to_s3 manual__2023-05-02T09:19:40.896749+00:00 [running]> on host fc43d9cc2362
+[2023-05-02T09:20:13.807+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=loliveros
+AIRFLOW_CTX_DAG_ID=prueba_tecnica
+AIRFLOW_CTX_TASK_ID=upload_to_s3
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-02T09:19:40.896749+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-02T09:19:40.896749+00:00
+[2023-05-02T09:20:13.819+0000] {base.py:73} INFO - Using connection ID 'loliveros_s3' for task execution.
+[2023-05-02T09:20:13.822+0000] {connection_wrapper.py:335} INFO - AWS Connection (conn_id='loliveros_s3', conn_type='aws') credentials retrieved from extra.
+[2023-05-02T09:20:14.071+0000] {taskinstance.py:1772} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/decorators/base.py", line 217, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/data_process/prueba/Prueba_Tecnica.py", line 149, in upload_to_s3
+    hook_s3.load_file(
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 65, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 93, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 635, in load_file
+    client.upload_file(filename, bucket_name, key, ExtraArgs=extra_args, Config=self.transfer_config)
+  File "/home/airflow/.local/lib/python3.9/site-packages/boto3/s3/inject.py", line 143, in upload_file
+    return transfer.upload_file(
+  File "/home/airflow/.local/lib/python3.9/site-packages/boto3/s3/transfer.py", line 288, in upload_file
+    future.result()
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/futures.py", line 266, in result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/tasks.py", line 139, in __call__
+    return self._execute_main(kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/tasks.py", line 162, in _execute_main
+    return_value = self._main(**kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/upload.py", line 758, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/client.py", line 530, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/client.py", line 929, in _make_api_call
+    handler, event_response = self.meta.events.emit_until_response(
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/hooks.py", line 416, in emit_until_response
+    return self._emitter.emit_until_response(aliased_event_name, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/hooks.py", line 271, in emit_until_response
+    responses = self._emit(event_name, kwargs, stop_on_response=True)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/utils.py", line 3062, in conditionally_calculate_md5
+    md5_digest = calculate_md5(body, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/utils.py", line 3029, in calculate_md5
+    binary_md5 = _calculate_md5_from_file(body)
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/utils.py", line 3041, in _calculate_md5_from_file
+    for chunk in iter(lambda: fileobj.read(1024 * 1024), b''):
+  File "/home/airflow/.local/lib/python3.9/site-packages/botocore/utils.py", line 3041, in <lambda>
+    for chunk in iter(lambda: fileobj.read(1024 * 1024), b''):
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/utils.py", line 511, in read
+    data = self._fileobj.read(amount_to_read)
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/upload.py", line 91, in read
+    return self._fileobj.read(amount)
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/utils.py", line 370, in read
+    self._open_if_needed()
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/utils.py", line 361, in _open_if_needed
+    self._fileobj = self._open_function(self._filename, self._mode)
+  File "/home/airflow/.local/lib/python3.9/site-packages/s3transfer/utils.py", line 272, in open
+    return open(filename, mode)
+IsADirectoryError: [Errno 21] Is a directory: '/tmp/prueba_tecnica/data/stage'
+[2023-05-02T09:20:14.085+0000] {taskinstance.py:1322} INFO - Marking task as FAILED. dag_id=prueba_tecnica, task_id=upload_to_s3, execution_date=20230502T091940, start_date=20230502T092013, end_date=20230502T092014
+[2023-05-02T09:20:14.097+0000] {standard_task_runner.py:100} ERROR - Failed to execute job 99 for task upload_to_s3 ([Errno 21] Is a directory: '/tmp/prueba_tecnica/data/stage'; 1462)
+[2023-05-02T09:20:14.161+0000] {local_task_job.py:159} INFO - Task exited with return code 1
+[2023-05-02T09:20:14.179+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check

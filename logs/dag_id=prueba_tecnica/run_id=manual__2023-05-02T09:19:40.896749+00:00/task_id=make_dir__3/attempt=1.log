@@ -1,0 +1,23 @@
+[2023-05-02T09:20:01.110+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.make_dir__3 manual__2023-05-02T09:19:40.896749+00:00 [queued]>
+[2023-05-02T09:20:01.134+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.make_dir__3 manual__2023-05-02T09:19:40.896749+00:00 [queued]>
+[2023-05-02T09:20:01.134+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T09:20:01.135+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 1
+[2023-05-02T09:20:01.136+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T09:20:01.165+0000] {taskinstance.py:1304} INFO - Executing <Task(_PythonDecoratedOperator): make_dir__3> on 2023-05-02 09:19:40.896749+00:00
+[2023-05-02T09:20:01.183+0000] {standard_task_runner.py:55} INFO - Started process 1431 to run task
+[2023-05-02T09:20:01.202+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'prueba_tecnica', 'make_dir__3', 'manual__2023-05-02T09:19:40.896749+00:00', '--job-id', '90', '--raw', '--subdir', 'DAGS_FOLDER/data_process/prueba/Prueba_Tecnica.py', '--cfg-path', '/tmp/tmpgesqyz9r']
+[2023-05-02T09:20:01.203+0000] {standard_task_runner.py:83} INFO - Job 90: Subtask make_dir__3
+[2023-05-02T09:20:01.312+0000] {task_command.py:389} INFO - Running <TaskInstance: prueba_tecnica.make_dir__3 manual__2023-05-02T09:19:40.896749+00:00 [running]> on host fc43d9cc2362
+[2023-05-02T09:20:01.668+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=loliveros
+AIRFLOW_CTX_DAG_ID=prueba_tecnica
+AIRFLOW_CTX_TASK_ID=make_dir__3
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-02T09:19:40.896749+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-02T09:19:40.896749+00:00
+[2023-05-02T09:20:01.671+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-05-02T09:20:01.688+0000] {taskinstance.py:1322} INFO - Marking task as SUCCESS. dag_id=prueba_tecnica, task_id=make_dir__3, execution_date=20230502T091940, start_date=20230502T092001, end_date=20230502T092001
+[2023-05-02T09:20:01.778+0000] {local_task_job.py:159} INFO - Task exited with return code 0
+[2023-05-02T09:20:01.812+0000] {taskinstance.py:2582} INFO - 1 downstream tasks scheduled from follow-on schedule check

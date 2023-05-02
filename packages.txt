@@ -1,0 +1,4 @@
+gcc
+libcurl4-openssl-dev
+libssl-dev
+libc-dev

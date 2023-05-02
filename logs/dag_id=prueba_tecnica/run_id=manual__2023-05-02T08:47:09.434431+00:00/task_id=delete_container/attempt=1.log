@@ -1,0 +1,23 @@
+[2023-05-02T08:47:10.760+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.delete_container manual__2023-05-02T08:47:09.434431+00:00 [queued]>
+[2023-05-02T08:47:10.771+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.delete_container manual__2023-05-02T08:47:09.434431+00:00 [queued]>
+[2023-05-02T08:47:10.771+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T08:47:10.771+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 1
+[2023-05-02T08:47:10.772+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T08:47:10.787+0000] {taskinstance.py:1304} INFO - Executing <Task(_PythonDecoratedOperator): delete_container> on 2023-05-02 08:47:09.434431+00:00
+[2023-05-02T08:47:10.796+0000] {standard_task_runner.py:55} INFO - Started process 654 to run task
+[2023-05-02T08:47:10.801+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'prueba_tecnica', 'delete_container', 'manual__2023-05-02T08:47:09.434431+00:00', '--job-id', '37', '--raw', '--subdir', 'DAGS_FOLDER/data_process/prueba/Prueba_Tecnica.py', '--cfg-path', '/tmp/tmpz4xhc_is']
+[2023-05-02T08:47:10.802+0000] {standard_task_runner.py:83} INFO - Job 37: Subtask delete_container
+[2023-05-02T08:47:10.873+0000] {task_command.py:389} INFO - Running <TaskInstance: prueba_tecnica.delete_container manual__2023-05-02T08:47:09.434431+00:00 [running]> on host fc43d9cc2362
+[2023-05-02T08:47:10.937+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=loliveros
+AIRFLOW_CTX_DAG_ID=prueba_tecnica
+AIRFLOW_CTX_TASK_ID=delete_container
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-02T08:47:09.434431+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-02T08:47:09.434431+00:00
+[2023-05-02T08:47:10.959+0000] {python.py:177} INFO - Done. Returned value was: None
+[2023-05-02T08:47:10.972+0000] {taskinstance.py:1322} INFO - Marking task as SUCCESS. dag_id=prueba_tecnica, task_id=delete_container, execution_date=20230502T084709, start_date=20230502T084710, end_date=20230502T084710
+[2023-05-02T08:47:11.012+0000] {local_task_job.py:159} INFO - Task exited with return code 0
+[2023-05-02T08:47:11.043+0000] {taskinstance.py:2582} INFO - 4 downstream tasks scheduled from follow-on schedule check

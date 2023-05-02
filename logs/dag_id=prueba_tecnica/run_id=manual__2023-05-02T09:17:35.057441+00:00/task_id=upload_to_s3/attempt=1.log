@@ -1,0 +1,34 @@
+[2023-05-02T09:17:49.433+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.upload_to_s3 manual__2023-05-02T09:17:35.057441+00:00 [queued]>
+[2023-05-02T09:17:49.446+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.upload_to_s3 manual__2023-05-02T09:17:35.057441+00:00 [queued]>
+[2023-05-02T09:17:49.446+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T09:17:49.446+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 1
+[2023-05-02T09:17:49.446+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T09:17:49.460+0000] {taskinstance.py:1304} INFO - Executing <Task(_PythonDecoratedOperator): upload_to_s3> on 2023-05-02 09:17:35.057441+00:00
+[2023-05-02T09:17:49.468+0000] {standard_task_runner.py:55} INFO - Started process 1335 to run task
+[2023-05-02T09:17:49.472+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'prueba_tecnica', 'upload_to_s3', 'manual__2023-05-02T09:17:35.057441+00:00', '--job-id', '73', '--raw', '--subdir', 'DAGS_FOLDER/data_process/prueba/Prueba_Tecnica.py', '--cfg-path', '/tmp/tmpaffcmqdu']
+[2023-05-02T09:17:49.472+0000] {standard_task_runner.py:83} INFO - Job 73: Subtask upload_to_s3
+[2023-05-02T09:17:49.539+0000] {task_command.py:389} INFO - Running <TaskInstance: prueba_tecnica.upload_to_s3 manual__2023-05-02T09:17:35.057441+00:00 [running]> on host fc43d9cc2362
+[2023-05-02T09:17:49.599+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=loliveros
+AIRFLOW_CTX_DAG_ID=prueba_tecnica
+AIRFLOW_CTX_TASK_ID=upload_to_s3
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-02T09:17:35.057441+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-02T09:17:35.057441+00:00
+[2023-05-02T09:17:49.601+0000] {taskinstance.py:1772} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/decorators/base.py", line 217, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/data_process/prueba/Prueba_Tecnica.py", line 151, in upload_to_s3
+    bucket_name=PARAMS_DEFINITION['s3_source_bucket'],
+KeyError: 's3_source_bucket'
+[2023-05-02T09:17:49.611+0000] {taskinstance.py:1322} INFO - Marking task as FAILED. dag_id=prueba_tecnica, task_id=upload_to_s3, execution_date=20230502T091735, start_date=20230502T091749, end_date=20230502T091749
+[2023-05-02T09:17:49.621+0000] {standard_task_runner.py:100} ERROR - Failed to execute job 73 for task upload_to_s3 ('s3_source_bucket'; 1335)
+[2023-05-02T09:17:49.643+0000] {local_task_job.py:159} INFO - Task exited with return code 1
+[2023-05-02T09:17:49.659+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check

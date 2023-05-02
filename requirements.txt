@@ -1,0 +1,4 @@
+# --extra-index-url https://pip.astronomer.io/simple
+
+numpy>=1.17.4
+pycurl>=7.43.0.2

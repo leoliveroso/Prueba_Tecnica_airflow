@@ -1,0 +1,34 @@
+[2023-05-02T08:47:20.886+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.transform_data manual__2023-05-02T08:47:09.434431+00:00 map_index=1 [queued]>
+[2023-05-02T08:47:20.912+0000] {taskinstance.py:1087} INFO - Dependencies all met for <TaskInstance: prueba_tecnica.transform_data manual__2023-05-02T08:47:09.434431+00:00 map_index=1 [queued]>
+[2023-05-02T08:47:20.916+0000] {taskinstance.py:1283} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T08:47:20.916+0000] {taskinstance.py:1284} INFO - Starting attempt 1 of 1
+[2023-05-02T08:47:20.916+0000] {taskinstance.py:1285} INFO - 
+--------------------------------------------------------------------------------
+[2023-05-02T08:47:20.953+0000] {taskinstance.py:1304} INFO - Executing <Mapped(_PythonDecoratedOperator): transform_data> on 2023-05-02 08:47:09.434431+00:00
+[2023-05-02T08:47:20.963+0000] {standard_task_runner.py:55} INFO - Started process 687 to run task
+[2023-05-02T08:47:20.975+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'prueba_tecnica', 'transform_data', 'manual__2023-05-02T08:47:09.434431+00:00', '--job-id', '48', '--raw', '--subdir', 'DAGS_FOLDER/data_process/prueba/Prueba_Tecnica.py', '--cfg-path', '/tmp/tmpyp3fhhla', '--map-index', '1']
+[2023-05-02T08:47:20.976+0000] {standard_task_runner.py:83} INFO - Job 48: Subtask transform_data
+[2023-05-02T08:47:21.160+0000] {task_command.py:389} INFO - Running <TaskInstance: prueba_tecnica.transform_data manual__2023-05-02T08:47:09.434431+00:00 map_index=1 [running]> on host fc43d9cc2362
+[2023-05-02T08:47:21.662+0000] {taskinstance.py:1511} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=loliveros
+AIRFLOW_CTX_DAG_ID=prueba_tecnica
+AIRFLOW_CTX_TASK_ID=transform_data
+AIRFLOW_CTX_EXECUTION_DATE=2023-05-02T08:47:09.434431+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-05-02T08:47:09.434431+00:00
+[2023-05-02T08:47:21.663+0000] {taskinstance.py:1772} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/decorators/base.py", line 217, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 192, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/data_process/prueba/Prueba_Tecnica.py", line 103, in transform_data
+    file_path = list_file_path[counter]
+IndexError: list index out of range
+[2023-05-02T08:47:21.672+0000] {taskinstance.py:1322} INFO - Marking task as FAILED. dag_id=prueba_tecnica, task_id=transform_data, map_index=1, execution_date=20230502T084709, start_date=20230502T084720, end_date=20230502T084721
+[2023-05-02T08:47:21.684+0000] {standard_task_runner.py:100} ERROR - Failed to execute job 48 for task transform_data (list index out of range; 687)
+[2023-05-02T08:47:21.746+0000] {local_task_job.py:159} INFO - Task exited with return code 1
+[2023-05-02T08:47:21.764+0000] {taskinstance.py:2582} INFO - 0 downstream tasks scheduled from follow-on schedule check
